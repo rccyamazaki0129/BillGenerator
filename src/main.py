@@ -96,60 +96,12 @@ for torihiki in torihiki_list:
             ws.range(yenPos).value = rows[20]
         ws.range('A32').value = rows[11]
 
-        # torihikidate = datetime.strptime(rows[2], '%Y-%m-%d')
-        # if startdate <= torihikidate <= enddate:
+    filename = torihiki + '.xlsx'
+    pdf_path = os.path.join(savepath, f'{torihiki}_report.pdf')
+    wb.api.exportasfixedformat(0, pdf_path)
+    os.startfile(pdf_path)
 
-            # プログラム12｜各データをテンプレートエクセルへ流し込む
-            # for x, cell in enumerate(rows):
-            #     if x == 0:
-            #         ws.range(gyo, 2 + x).value = cell
-            #     elif x == 1:
-            #         ws.range((gyo, 2 + x),(gyo, 4 + x) ).merge()
-            #         ws.range(gyo, 2 + x).value = cell
-            #     elif x == 2:
-            #         ws.range(gyo, 4 + x).value = cell
-            #         ws.range(gyo, 4 + x).number_format = 'yyyy-mm-dd'
-            #     elif x == 3:
-            #         ws.range(gyo, 4 + x).value = cell
-            #         ws.range(gyo, 4 + x).number_format = '¥#,##0;¥-#,##0'
+    wb.save('../bill/' + filename)
+    wb.close()
 
-            # プログラム13｜行に罫線を引く
-            # ws.range((gyo, 2),(gyo, 7) ).api.Borders.LineStyle = 1
-
-            # プログラム14｜合計金額と対象行を累算する
-            # goukei += rows[3]
-            # gyo+=1
-#
-#     # プログラム15｜テンプレートエクセルに各情報を出力
-#     ws.range('A2').value = torihiki
-#
-#     kikan = startdate.strftime('%Y-%m-%d') + '~' +  enddate.strftime('%Y-%m-%d') + 'の請求書'
-#     ws.range('B6').value = kikan
-#
-#     ws.range('C9').value = goukei
-#     ws.range('C9').number_format = '¥#,##0;¥-#,##0'
-#
-#     now = datetime.now()
-#     seikyusho_id = now.strftime('%Y%m%d') + '_' + torihiki
-#     ws.range('G3').value = seikyusho_id
-#
-#     hiduke = now.strftime('%Y-%m-%d')
-#     ws.range('G4').value = hiduke
-#
-#     kigen = now + timedelta(days=15)
-#     ws.range('C11').value = kigen.strftime('%Y-%m-%d')
-#
-#     ws.name = torihiki
-
-#     # プログラム16｜テンプレートエクセルをPDFとして保存
-#     pdf_path = os.path.join(savepath, f'{torihiki}_report.pdf')
-#     wb.api.ExportAsFixedFormat(0, pdf_path)
-#     os.startfile(pdf_path)
-#
-#     # プログラム17｜テンプレートエクセルを新しいエクセルとして保存
-#     filename = hiduke + '_' + torihiki + '.xlsx'
-#     wb.save(filename)
-#     wb.close()
-#
-# # プログラム18｜エクセルをアプリケーションごと閉じる
-# App.quit()
+App.quit()
