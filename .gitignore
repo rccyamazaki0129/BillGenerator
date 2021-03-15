@@ -1,3 +1,5 @@
 .DS_Store
 bill
 src/*.xlsx
+list/~$info.xlsx
+list/~$template.xlsx
