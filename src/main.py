@@ -98,8 +98,8 @@ for torihiki in torihiki_list:
 
     filename = torihiki + '.xlsx'
     pdf_path = os.path.join(savepath, f'{torihiki}_report.pdf')
-    wb.api.exportasfixedformat(0, pdf_path)
-    os.startfile(pdf_path)
+    # wb.api.ExportAsFixedFormat(0, pdf_path)
+    # os.startfile(pdf_path)
 
     wb.save('../bill/' + filename)
     wb.close()
