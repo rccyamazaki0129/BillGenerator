@@ -1,5 +1,6 @@
 #プログラム1｜ライブラリの設定
 from datetime import datetime, timedelta
+import datetime
 import xlwings as xw
 import pandas as pd
 import os
@@ -11,6 +12,8 @@ savepath = '../bill/'
 
 #プログラム3｜エクセルを読み込み、日付を変換
 df = pd.read_excel(samplepath)
+dt_now = datetime.datetime.now()
+title = str(dt_now.month + 1) + '月分請求書'
 # df['納品日'] = pd.to_datetime(df['納品日']).dt.strftime("%Y-%m-%d")
 
 #プログラム4｜取引先のリストを作成
@@ -42,6 +45,7 @@ for torihiki in torihiki_list:
 
     for rows in values:
         print(rows[0])
+        ws.range('A1').value = title
         ws.range('A2').value = rows[5]
         ws.range('A3').value = rows[6]
         ws.range('A6').value = rows[0]
